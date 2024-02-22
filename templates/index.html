@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745; /* Green color */
+            color: #fff;
+            border: none;
+            padding: 15px 30px; /* Increased padding for a bigger button */
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            font-size: 1.2em; /* Increased font size */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838; /* Darker green color on hover */
+        }
+
+        hr {
+            margin-top: 40px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IRIS APP</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="sepal_length">Sepal Length:</label>
+            <input type="number" name="sepal_length" id="sepal_length" required><br>
+
+            <label for="sepal_width">Sepal Width:</label>
+            <input type="number" name="sepal_width" id="sepal_width" required><br>
+
+            <label for="petal_length">Petal Length:</label>
+            <input type="number" name="petal_length" id="petal_length" required><br>
+
+            <label for="petal_width">Petal Width:</label>
+            <input type="number" name="petal_width" id="petal_width" required><br>
+
+            <button type="submit" name="action" value="Predict">Predict</button>
+        </form>
+
+        <hr>
+        {% if prediction %}
+            <h2 class="result">Result: {{prediction}}</h2>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
